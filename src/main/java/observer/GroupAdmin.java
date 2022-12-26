@@ -54,4 +54,21 @@ public class GroupAdmin implements Sender
             client.update(this.mode);
         }
     }
+
+    public ArrayList<Member> getClients()
+    {
+        return this.clients;
+    }
+
+    @Override
+    public String toString()
+    {
+    String all="";
+    for(Member client: this.clients)
+    {
+        all+=client.toString()+" ";
+    }
+    return all.strip();
+    }
+
 }

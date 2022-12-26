@@ -8,4 +8,10 @@ public class ConcreteMember implements Member
     {
     this.client=usb;
     }
+
+    @Override
+    public String toString()
+    {
+        return this.client.toString();
+    }
 }
