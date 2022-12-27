@@ -35,6 +35,9 @@ public class GroupAdmin implements Sender
      */
     public void unregister(Member obj)
     {
+    UndoableStringBuilder r = new UndoableStringBuilder();
+    r.append(this.mode.toString());
+    this.clients.get(obj.getName()).update(r);
     this.clients.remove(obj.getName());
     }
 

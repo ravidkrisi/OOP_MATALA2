@@ -39,8 +39,10 @@ class GroupAdminTest {
 
         manager.unregister(c2);
 
+        manager.notifyClients();
         assertEquals(manager.getClients().containsKey(c2.getName()), false);
         assertEquals(manager.getClients().size(), 2);
+        assertEquals(c2.getClient(), null);
     }
 
     @Test
