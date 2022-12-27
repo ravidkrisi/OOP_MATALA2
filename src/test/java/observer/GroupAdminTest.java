@@ -5,85 +5,98 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GroupAdminTest
 {
-    GroupAdmin manger = new GroupAdmin();
+    //intialize var @manager for GroupAdmin and vars @c1 @c2 @c3 to ConcreteMember
+    GroupAdmin manager = new GroupAdmin("manager");
 
-    ConcreteMember c1 = new ConcreteMember();
-    ConcreteMember c2 = new ConcreteMember();
-    ConcreteMember c3 = new ConcreteMember();
-
-    UndoableStringBuilder s1 = new UndoableStringBuilder();
-    UndoableStringBuilder s2 = new UndoableStringBuilder();
-    UndoableStringBuilder s3 = new UndoableStringBuilder();
-
-
+    ConcreteMember c1 = new ConcreteMember("maya", "zand");
+    ConcreteMember c2 = new ConcreteMember("ravid", "krisi");
+    ConcreteMember c3 = new ConcreteMember("noam", "david");
 
 
     @Test
     void register()
     {
+        manager.register(c1);
+        manager.register(c2);
+        manager.register(c3);
 
-    s1.append("ravid");
-    s2.append("maya");
-    s3.append("naomi");
+        String s = manager.toString();
+        assertEquals(manager.getClients().containsKey(c1.getName()), true);
 
-    c1.update(s1);
-    c2.update(s2);
-    c3.update(s3);
-
-    manger.register(c1);
-    manger.register(c2);
-    manger.register(c3);
-
-    String output = manger.toString();
-
-    assertEquals("ravid maya naomi",output);
+        //check if it adds already registered client
+        manager.register(c1);
+        assertEquals(manager.getClients().size(), 3);
     }
+
 
     @Test
     void unregister()
     {
-    s1.append("ravid");
-    s2.append("maya");
-    s3.append("naomi");
+        manager.register(c1);
+        manager.register(c2);
+        manager.register(c3);
 
-    c1.update(s1);
-    c2.update(s2);
-    c3.update(s3);
+        manager.unregister(c2);
 
-    manger.register(c1);
-    manger.register(c2);
-    manger.register(c3);
-
-    manger.unregister(c1);
-
-    String output = manger.toString();
-
-    assertEquals("maya naomi",output);
+        assertEquals(manager.getClients().containsKey(c2.getName()), false);
+        assertEquals(manager.getClients().size(), 2);
     }
 
     @Test
     void insert()
     {
+    manager.insert(0, "m");
 
+    assertEquals(manager.getMode().toString(), "mmanager");
     }
 
     @Test
     void append()
     {
+    manager.append("m");
+
+    assertEquals(manager.getMode().toString(), "managerm");
     }
 
     @Test
     void delete()
     {
+    manager.delete(0, 1);
+
+    assertEquals(manager.getMode().toString(), "anager");
     }
 
     @Test
     void undo()
     {
+    manager.append("m");
+    manager.undo();
+
+    assertEquals(manager.getMode().toString(), "manager");
     }
 
     @Test
     void notifyClients()
     {
+    manager.register(c1);
+    manager.register(c2);
+    manager.register(c3);
+
+    manager.notifyClients();
+
+    for (String client : manager.getClients().keySet())
+    {
+        assertEquals(manager.getClients().containsKey(client), true);
+    }
+    }
+
+    @Test
+    void update()
+    {
+    UndoableStringBuilder s1= new UndoableStringBuilder();
+    s1.append("ravid");
+
+    c1.update(s1);
+    assertEquals(c1.toString(), "ravid");
     }
 }
