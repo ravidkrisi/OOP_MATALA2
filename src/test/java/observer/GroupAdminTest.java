@@ -2,6 +2,11 @@ package observer;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import observer.ConcreteMember;
+import observer.GroupAdmin;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
 
 class GroupAdminTest
 {
