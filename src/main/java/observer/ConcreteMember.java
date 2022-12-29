@@ -15,6 +15,8 @@ public class ConcreteMember implements Member
 
     /**
     //Counstructor for ConcreteMember gets String for name and String to append the UndoableStringBuilder
+     *@param name name of the client
+    * @param s UndoAbleStringBuilder of the client
     */
      public ConcreteMember(String name, String s)
     {
@@ -25,6 +27,7 @@ public class ConcreteMember implements Member
     @Override
     /**
      * This method gets UndoableStringBuilder and update it
+     * @param usb the UndoAbleStringBuilder to update the client with
      */
     public void update(UndoableStringBuilder usb)
     {

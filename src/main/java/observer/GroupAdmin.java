@@ -14,6 +14,7 @@ public class GroupAdmin implements Sender
 
     /**
     constructor for groupAdmin - this method gets string and appends it to the UndoableStringBuilder
+     * @param mode the string to append to the manager's UndoAbleStringBuilder
      */
     public GroupAdmin(String mode)
     {
@@ -23,6 +24,7 @@ public class GroupAdmin implements Sender
     @Override
     /**
      *This method gets a Member obj and put it in the HashMap by his name
+     * @param obj the client to add to the clients HashMap
      */
     public void register(Member obj)
     {
@@ -32,6 +34,7 @@ public class GroupAdmin implements Sender
     @Override
     /**
      *This method gets a client and removes it from the Hashmap by its name
+     * @param obj the client to remove from the clients HashMap
      */
     public void unregister(Member obj)
     {
@@ -44,6 +47,8 @@ public class GroupAdmin implements Sender
     @Override
     /**
      *This method gets an offset value and String obj and insert it to the offset in UndoableStringBuilder
+     * @param offest the index to start to insert the new String
+     * @param obj the String to insert to the manager's UndoAbleStringBuilder
      */
     public void insert(int offset, String obj)
     {
@@ -54,6 +59,7 @@ public class GroupAdmin implements Sender
     @Override
     /**
      *This method gets a String and append it to the end of the UndoableStringBuilder
+     * @param obj the String to append to the manager's UndoAbleStringBuilder
      */
     public void append(String obj)
     {
@@ -63,6 +69,8 @@ public class GroupAdmin implements Sender
     @Override
     /**
      *This method gets start index and end index to delete characters in UndoableStringBuilder
+     * @param start the index to start deleting chars from the string of the manager's UndoAbleStringBuilder
+     * @param end the index to end deleting chars from the string of the manager's UndoAbleStringBuilder
      */
     public void delete(int start, int end)
     {
